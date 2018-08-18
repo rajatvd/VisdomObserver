@@ -1,8 +1,8 @@
 from setuptools import *
 
 long_description = """
-A sacred `RunObserver` which uses visdom to plot logged metrics and image artifacts. Supports easy creation
-of plots with particular subsets of the logged metrics.
+A sacred `RunObserver` which uses `visdom` to plot logged metrics and image artifacts. Supports creation
+of dynamically updating plots with different sets of metrics easily.
 """
 
 setup(name='visdom_observer',
