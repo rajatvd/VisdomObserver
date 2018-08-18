@@ -1,0 +1,5 @@
+.ipynb_checkpoints
+__pycache__
+my_runs
+figures
+visdom_observer.egg-info
