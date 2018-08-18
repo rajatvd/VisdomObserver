@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import ode
 from sacred.observers import FileStorageObserver
-from visdom_observer import VisdomObserver
+from visdom_observer.visdom_observer import VisdomObserver
 import time
 import os
 

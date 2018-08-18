@@ -14,5 +14,5 @@ setup(name='visdom_observer',
 		install_requires=['sacred'],
 		author_email='rajatvd@gmail.com',
 		license='MIT',
-		packages=find_packages(),
+		packages=['visdom_observer'],
 		zip_safe=False)
