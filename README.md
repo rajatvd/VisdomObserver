@@ -14,4 +14,4 @@ Then, `cd` into the `package` directory and run the following command:
 Simply add an instance of this observer to a `sacred` Experiment object. Make sure to have a visdom server running while the experiment is running. Open up visdom in the browser and view the environment created for the particular run. All scalars logged using `ex.log_scalar` will be recorded. Create dynamic metric plots easily using the GUI pane in visdom.
 
 A detailed example is shown in the `example_experiment.ipynb` notebook. Run this script to see the observer in action:  
-`python rendevous_control.py`
+`python rendevous_control.py -b 0.1`
