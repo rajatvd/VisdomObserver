@@ -15,3 +15,7 @@ Simply add an instance of this observer to a `sacred` Experiment object. Make su
 
 A detailed example is shown in the `example_experiment.ipynb` notebook. Run this script to see the observer in action:  
 `python rendevous_control.py -b 0.1`
+
+# Todo
+
+- [ ] Allow the create plot GUI to work after a run completes, and for previously completed runs.
