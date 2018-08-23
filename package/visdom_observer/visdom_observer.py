@@ -61,7 +61,7 @@ class MetricWindow():
             legend=self.metric_names,
             xlabel='Steps',
             ylabel='Value',
-            title=title or 'Metrics'
+            title=title or ', '.join(self.metric_names)
         )
         
         y, step = metric_dict_to_xy(metric_data_dict, self.metric_names)
@@ -108,7 +108,8 @@ def plot_create_callback_generator(checkbox_dict, create_metric_plot, log=False)
       
     create_metric_plot: The function to call when the element with property id 0 is called.
         Assumes that it is a button meant for creating plots. Passes in the value of the text
-        field into this function, assumes that it is used as a title.
+        field into this function as the title, and the names of the checked checkboxes as a list
+        of metric_names.
     """
     
     event = yield # first next call
@@ -125,7 +126,15 @@ def plot_create_callback_generator(checkbox_dict, create_metric_plot, log=False)
             text_field = event['value']
         
         elif prop_id == 0:
-            create_metric_plot(text_field)
+            try:
+                metric_names = []
+                for key, value in checkbox_dict.items():
+                    if value: 
+                        metric_names.append(key)
+                create_metric_plot(metric_names=metric_names, title=text_field)
+            except KeyError as e:
+                print("Could not create metric plot")
+                print(e)
         
         elif item['type'] == 'checkbox':
             checkbox_dict[item['name']] = not checkbox_dict.get(item['name'], False)
@@ -159,30 +168,19 @@ class VisdomObserver(RunObserver):
         
         self.vis.save([self.env])
         
-    def create_metric_plot(self, title):
+    def create_metric_plot(self, metric_names, title):
         """Create a new metric plot with the given title. Only 
         the metrics selected by the checkboxes will be plotted."""
-        
-        try:
-            metric_names = []
-            for key, value in self.checkbox_state.items():
-                if value: 
-                    metric_names.append(key)
 
-    #         print(metric_names)
+        if len(metric_names) == 0:
+            return
 
-            if len(metric_names) == 0:
-                return
+        window = MetricWindow(self.vis, 
+                              self.metric_data_dict,
+                              metric_names_to_plot=metric_names,
+                              title=title)
 
-            window = MetricWindow(self.vis, 
-                                  self.metric_data_dict,
-                                  metric_names_to_plot=metric_names,
-                                  title=title)
-
-            self.step_wins.append(window)
-        except KeyError as e:
-            print(e)
-            print("Could not create plot, please try again")
+        self.step_wins.append(window)
     
     def make_properties_window(self):
         """Create a window which allows creation of metric plots.
