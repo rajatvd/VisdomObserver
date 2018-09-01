@@ -19,3 +19,4 @@ A detailed example is shown in the `example_experiment.ipynb` notebook. Run this
 # Todo
 
 - [ ] Allow the create plot GUI to work after a run completes, and for previously completed runs.
+- [ ] Create plots vs timestamp and not just vs step.
