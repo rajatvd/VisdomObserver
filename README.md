@@ -4,6 +4,11 @@ of dynamically updating plots with different sets of metrics easily.
 
 
 # Installation
+Install using pip:  
+`pip install visdom-observer`
+
+OR
+
 First, clone this repository using  
 `git clone https://github.com/rajatvd/VisdomObserver/`
 
