@@ -6,7 +6,7 @@ of dynamically updating plots with different sets of metrics easily.
 """
 
 setup(name='visdom_observer',
-		version='0.2',
+		version='0.2.1',
 		description='A sacred `RunObserver` which uses visdom to plot metrics and artifacts',
 		long_description=long_description,
 		author='Rajat Vadiraj Dwaraknath',
